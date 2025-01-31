@@ -1,15 +1,15 @@
 from django.shortcuts import render
-from django.http import JsonResponse
 from .models import Movie
 
 def get_movies(request):
-    movies = list(Movie.objects.values())
-    return JsonResponse(movies, safe=False)
+    movies = Movie.objects.all() 
+    return render(request, 'movie/movies_list.html', {'movies': movies})
 
 def get_movie_by_id(request, id):
     try:
-        movie = Movie.objects.get(pk=id)
-        return JsonResponse({'id': movie.id, 'title': movie.title, 'description': movie.description,
-                             'producer': movie.producer, 'duration': movie.duration})
+        movie = Movie.objects.get(id=id)
+        return render(request, 'movie/movie_detail.html', {'movie': movie})
     except Movie.DoesNotExist:
-        return JsonResponse({'error': 'Movie not found'}, status=404)
+        return render(request, 'movie/movie_not_found.html')
+
+

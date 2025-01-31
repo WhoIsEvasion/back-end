@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список фильмов</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; }
+        .container { max-width: 800px; margin: auto; }
+        .movie { border-bottom: 1px solid #ddd; padding: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Список фильмов</h1>
+        {% for movie in movies %}
+            <div class="movie">
+                <h2>{{ movie.title }}</h2>
+                <p><strong>Описание:</strong> {{ movie.description }}</p>
+                <p><strong>Продюсер:</strong> {{ movie.producer }}</p>
+                <p><strong>Длительность:</strong> {{ movie.duration }} сек.</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

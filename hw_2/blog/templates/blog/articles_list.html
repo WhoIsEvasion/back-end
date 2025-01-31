@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список статей</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { text-align: center; }
+        .container { max-width: 800px; margin: auto; }
+        .article { border-bottom: 1px solid #ddd; padding: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Список статей</h1>
+        {% for article in articles %}
+            <div class="article">
+                <h2>{{ article.title }}</h2>
+                <p><strong>Описание:</strong> {{ article.description }}</p>
+                <p><strong>Дата создания:</strong> {{ article.created_at }}</p>
+                <p><strong>Дата обновления:</strong> {{ article.updated_at }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
