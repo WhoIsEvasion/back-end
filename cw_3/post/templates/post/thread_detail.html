@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}{{ thread.name }}{% endblock %}
+{% block content %}
+<h2>{{ thread.name }}</h2>
+<p>{{ thread.description }}</p>
+<a href="{% url 'edit_thread' thread.id %}" class="btn btn-warning">Редактировать</a>
+<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">Добавить пост</button>
+<ul class="list-group mt-3">
+    {% for post in posts %}
+        <li class="list-group-item">
+            <div>
+                {{ post.title }} - {{ post.author }}
+                <p> {{ post.description }} </p>
+            <div>
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                <form method="post" action="{% url 'delete_post' post.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+<div class="modal fade" id="addPostModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Добавить пост</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ post_form.as_p }}
+                    <button type="submit" class="btn btn-success">Опубликовать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
