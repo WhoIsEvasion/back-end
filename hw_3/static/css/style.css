@@ -1,0 +1,50 @@
+h1 {
+    color: #343a40;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: aqua;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #444;
+    color: white;
+}
+.completed {
+    color: green;
+    font-weight: bold;
+}
+.pending {
+    color: orange;
+    font-weight: bold;
+}
+.actions a {
+    margin-right: 5px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid;
+    display: inline-block;
+}
+.view {
+    background-color: lightblue;
+}
+.delete {
+    background-color: lightcoral;
+}
