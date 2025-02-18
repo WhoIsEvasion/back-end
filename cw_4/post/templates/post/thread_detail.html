@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}{{ thread.name }}{% endblock %}
+{% block content %}
+<h2>{{ thread.name }}</h2>
+<p>{{ thread.description }}</p>
+<a href="{% url 'edit_thread' thread.id %}" class="btn btn-warning">Редактировать</a>
+<ul class="list-group mt-3">
+    {% for post in posts %}
+        <li class="list-group-item">
+            <div>
+                {{ post.title }} - {{ post.author }}
+                <p> {{ post.description }} </p>
+                {% if post.picture %}
+                  <img class = "w-25" src='{{ post.picture.url }}' alt = 'Изображение'> 
+                {% endif %}
+            <div>
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                <form method="post" action="{% url 'delete_post' post.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#postModal">
+    Добавить пост
+</button>
+  
+  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ post_form.as_p }}
+            <button type="submit" class="btn btn-success">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>  
+{% endblock %}
