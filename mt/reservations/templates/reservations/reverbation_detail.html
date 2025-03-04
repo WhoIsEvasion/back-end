@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Бронь {% endblock %}
+
+{% block content %}
+<h2> Бронь № {{ reservation.id}}</h2>
+<ul class="list-group">
+    <li class="list-group-item"><strong> Клиент: </strong> {{ reservation.customer.name }} </li>
+    <li class="list-group-item"><strong> Стол: </strong> {{ reservation.table.number }} </li>
+    <li class="list-group-item"><strong> Дата: </strong> {{ reservation.date }} </li>
+    <li class="list-group-item"><strong> Статус: </strong> {{ reservation.get_status_display}} </li>
+</ul>
+{% endblock %}

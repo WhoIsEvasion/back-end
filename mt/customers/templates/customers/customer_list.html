@@ -1,0 +1,23 @@
+{%  extends 'base.html' %}
+{% block title %} Клиенты {% endblock %}
+
+{% block content %}
+<h2> Список клиентов </h2>
+<table class="tbale table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <th>{{ customer.id }}</th>
+            <th>{{ customer.name }}</th>
+            <th>{{ customer.phone }}</th>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

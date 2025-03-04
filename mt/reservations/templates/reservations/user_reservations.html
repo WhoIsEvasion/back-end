@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Бронирования пользователя {% endblock %}
+
+{% block content %}
+<h2> Бронирования для {{ reservations.0.customer.name }}</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Стол</td>
+            <td>Дата</td>
+            <td>Статус</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% reservation in reservations %}
+        <tr>
+            <td> {{reservation.id}} </td>
+            <td> {{reservation.table.number}} </td>
+            <td> {{reservation.date}} </td>
+            <td> {{reservation.get_status_display}} </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
