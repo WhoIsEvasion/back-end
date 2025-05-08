@@ -26,27 +26,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
-document.addEventListener("DOMContentLoaded", function () {
-    const checkBtn = document.getElementById("check-btn");
-    const nextTaskBtn = document.getElementById("next-task-btn");
-    const questionForm = document.getElementById("question-form");
-    
-    if (checkBtn && nextTaskBtn && questionForm) {
-        checkBtn.addEventListener("click", function () {
-            const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-            const correctAnswer = questionForm.getAttribute("data-correct-answer");
-
-            if (selectedAnswer) {
-                if (selectedAnswer.value === correctAnswer) {
-                    nextTaskBtn.style.display = "inline-block";
-                    checkBtn.disabled = true;
-                } else {
-                    alert("Неправильный ответ. Попробуйте еще раз.");
-                }
-            } else {
-                alert("Пожалуйста, выберите вариант ответа.");
-            }
-        });
-    }
-});

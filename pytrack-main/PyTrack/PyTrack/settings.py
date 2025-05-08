@@ -1,4 +1,4 @@
-
+import os
 
 from pathlib import Path
 
@@ -10,7 +10,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'doflzshys',
+    'API_KEY': '112272295762214',
+    'API_SECRET': 'QCY1deW2ZJL-RWkZjqaTl5CSl30',
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'learning',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +88,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -96,7 +104,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = '/home/al3fil4/mysite/static'
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -119,3 +128,12 @@ LOGGING = {
         },
     },
 }
+
+AUTH_USER_MODEL = 'learning.CustomUser'
+
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_COOKIE_SECURE = False
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/al3fil4/mysite/media'
